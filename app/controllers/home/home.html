@@ -1,0 +1,61 @@
+
+
+<div ui-view='header'></div>
+        <div class="col-md-10 col-md-offset-1 userStoryPanel">
+             
+            <div class="panel panel-default panel-table userStoryTabPanel">
+              <div class="panel-heading uspheading">
+                <div class="row">
+                  <!--<div class="col col-xs-6">
+                    <h3 class="panel-title">User story</h3>
+                  </div>-->
+                  <div class="col col-xs-12">
+                   <div id="custom-search-input">
+                    <div class="input-group col-md-4 pull-right">
+                                <input type="text" ng-model="vm.search" class="search-query form-control " placeholder="Search" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered userStoryList">
+                 <thead>
+										<th  ng-click="changeSorting('user.title')"  ng-repeat="user in vm.userHeader">{{user.title}} <i class="glyphicon glyphicon-sort-by-attributes" ng-class="selectedCls('id')" ng-show="!sort.descending"></i><i class="glyphicon glyphicon-sort-by-attributes-alt" ng-show="sort.descending"></i></th>     
+								</thead>
+                  
+                  <tbody>
+                     <tr dir-paginate="user in vm.users |  orderBy:sort.column:sort.descending | itemsPerPage: 10 |filter:vm.search " pagination-id="userList" ng-click="vm.open(user)">
+											<td> {{user.userId}}</td>
+											<td> {{user.id}}</td>
+											<td> {{user.title | strlimit : vm.characterLimit}}</td>
+											<td> {{user.body  | strlimit : vm.characterLimit}}</td>
+										</tr>
+                      
+                        </tbody>
+                </table>
+                <div class="loader" ng-if="vm.showSpinner">Loading...</div>
+              <div class="row" ng-if="vm.users.length==0" >
+                  <div class="col col-md-12">
+                    <div class="noData">No Data Found</div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-xs-8">
+                    <dir-pagination-controls pagination-id="userList"></dir-pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      </div>
+    </div>
+    <div ui-view="footer"></div>
+
