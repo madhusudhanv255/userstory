@@ -22,7 +22,7 @@ describe('UserData Service', function() {
 	  		var result = userService.getUserData();
 	  		$httpBackend.flush();
 	  		result.then(function (response) {
-	  			expect(response.data).to.include.members(response);
+	  			expect(response.data).to.be.eql(response);
 	  		});
         });
   	});
@@ -34,7 +34,7 @@ describe('UserData Service', function() {
 	  		var result = userService.getUserData();
 	  		$httpBackend.flush();
             result.then(function (response) {
-	  			expect(response.data).to.include.members(response);
+	  			expect(response.data).to.be.eql(response);
 	  		});
         });
   	});
